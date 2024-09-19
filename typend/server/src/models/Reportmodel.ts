@@ -5,7 +5,7 @@ type Report = {
   description: string;
   value: number; //TODO make it be or boolean or int for later, currently only int
   type: string;
-  parent: mongoose.Types.ObjectId; // Add this field
+  parent: mongoose.Types.ObjectId | null; 
 };
 
 const ReportSchema = new mongoose.Schema<Report>({
@@ -24,10 +24,21 @@ const ReportSchema = new mongoose.Schema<Report>({
     type: String,
     default: "report",
   },
-  parent: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Node",
-  },
+  parent: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Node",
+      default: null,
+    },
+  ],
+});
+
+ReportSchema.pre(/^find/, function (this: any, next) {
+  this.populate({
+    path: "parent",
+  });
+
+  next();
 });
 
 const Reports = mongoose.model("Reports", ReportSchema);

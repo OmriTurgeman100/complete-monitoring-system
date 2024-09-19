@@ -1,4 +1,5 @@
 import Node from "../models/Nodemodel";
+import Reports from "../models/Reportmodel";
 import { RequestHandler } from "express";
 
 //TODO make some relationships between documents.
@@ -24,8 +25,11 @@ export const get_specific_node: RequestHandler = async (req, res, next) => {
     // const specified_noce = await Node.findById(req.params.id, { status: "up" });
     const specified_node = await Node.find({ parent: req.params.id });
 
+    const specified_report = await Reports.find({ parent: req.params.id });
+
     res.status(200).json({
       data: specified_node,
+      specified_report,
     });
   } catch (error) {
     res.status(400).json({
@@ -85,16 +89,5 @@ export const delete_node: RequestHandler = async (req, res, next) => {
     });
   }
 };
-// export const get_specific_node: RequestHandler = async (req, res, next) => {
-//   try {
-//     const specified_noce = await Node.findById(req.params.id);
 
-//     res.status(200).json({
-//       data: specified_noce,
-//     });
-//   } catch (error) {
-//     res.status(400).json({
-//       data: error,
-//     });
-//   }
-// };
+//TODO attach report to specific node.
