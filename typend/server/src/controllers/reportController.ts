@@ -1,4 +1,4 @@
-import Reports from "../models/ReportModel";
+import Reports from "../models/Reportmodel";
 import { RequestHandler } from "express";
 
 // * get
