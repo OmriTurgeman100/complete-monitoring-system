@@ -18,20 +18,6 @@ export const get_nodes: RequestHandler = async (req, res, next) => {
   }
 };
 
-// export const get_specific_node: RequestHandler = async (req, res, next) => {
-//   try {
-//     const specified_noce = await Node.findById(req.params.id);
-
-//     res.status(200).json({
-//       data: specified_noce,
-//     });
-//   } catch (error) {
-//     res.status(400).json({
-//       data: error,
-//     });
-//   }
-// };
-
 // * hierarchy node.
 export const get_specific_node: RequestHandler = async (req, res, next) => {
   try {
@@ -99,3 +85,16 @@ export const delete_node: RequestHandler = async (req, res, next) => {
     });
   }
 };
+// export const get_specific_node: RequestHandler = async (req, res, next) => {
+//   try {
+//     const specified_noce = await Node.findById(req.params.id);
+
+//     res.status(200).json({
+//       data: specified_noce,
+//     });
+//   } catch (error) {
+//     res.status(400).json({
+//       data: error,
+//     });
+//   }
+// };
